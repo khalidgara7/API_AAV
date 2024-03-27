@@ -14,7 +14,7 @@ phases:
       - composer require --dev phpunit/phpunit
   build:
     commands:
-      - ./vendor/bin/phpunit --testsuite=Unit
+      - php artisan test
 
 artifacts:
   files:
