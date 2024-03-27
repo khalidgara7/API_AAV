@@ -11,10 +11,11 @@ class UserController extends Controller
     {
         $user  = $request->all();
         // dd($request);
-        User::create($user);
+        $us = User::create($user);
         return response()->json([
-            "msg" => "user added successfully !"
-        ]);
+            "msg" => "user added successfully !",
+            "data" => $us,
+        ], 201);
     }
 
     public function delete(User $user)
@@ -45,8 +46,8 @@ class UserController extends Controller
         $user->update($data);
 
         return response()->json([
-        "message" => "User updated successfully",
-        "user" => $user
-    ]);
+            "message" => "User updated successfully",
+            "user" => $user
+        ]);
     }
 }
