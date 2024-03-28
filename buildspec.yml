@@ -4,22 +4,30 @@ phases:
   install:
     runtime-versions:
       php: 8.2
-    commands:
-      - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-      - php composer-setup.php --install-dir=/usr/local/bin --filename=composer
   pre_build:
     commands:
+      - echo "Installing Composer..."
+      - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+      - php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+      - echo "Installing dependencies..."
       - composer install
-      - npm install
-      - composer require --dev phpunit/phpunit
   build:
     commands:
+      - echo "Building project..."
+      - npm install
+  post_build:
+    commands:
+      - echo "Running PHPUnit tests..."
       - ./vendor/bin/phpunit --testsuite=Unit
 
 artifacts:
   files:
     - "**/*"
-  name: $(date +%Y-%m-%dT%H:%M:%S).zip
+  name: app-$(date +%Y-%m-%dT%H:%M:%S).zip
+
+cache:
+  paths:
+    - '/root/.composer/cache'
 
 proxy:
   upload-artifacts: yes
