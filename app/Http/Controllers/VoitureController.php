@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Vioture;
+use App\Models\voiture;
 
 class VoitureController extends Controller
 {
 
     public function index()
     {
-        $voitures = Vioture::all();
+        $voitures = voiture::all();
         return response()->json($voitures);
     }
     public function estimationprice(Request $request)
@@ -18,11 +18,11 @@ class VoitureController extends Controller
 
         $car = $request->validate([
             'marque' => 'required',
-            'model' => 'required',
+            'modele' => 'required',
             'annee' => 'required',
         ]);
 
-        $similarCars = Vioture::where('marque', $car['marque'])
+        $similarCars = voiture::where('marque', $car['marque'])
             ->where('modele', $car['modele'])
             ->where('annee', $car['annee'])
             ->get();

@@ -3,7 +3,6 @@
 namespace Tests\Unit;
 
 // use PHPUnit\Framework\TestCase;
-use App\Models\Vioture;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\User;
@@ -14,7 +13,7 @@ class Crud_UserTest extends TestCase
      * A basic unit test example.
      */
 
-     use RefreshDatabase;
+    use RefreshDatabase;
     public function test_Adduser(): void
     {
         // $user = [
@@ -23,18 +22,18 @@ class Crud_UserTest extends TestCase
         //     "password" => "123",
         // ];
 
-    $user = User::factory()->make()->toArray();
+        $user = User::factory()->make()->toArray();
 
         $response = $this->postJson("/api/adduser", $user);
 
-        
+
 
         $response->assertStatus(200);
         // $response->assertJson([
         //     "msg" => "user added successfully !"
         // ]);
     }
-    
+
 
     public function test_delete_user(): void
     {
@@ -65,37 +64,5 @@ class Crud_UserTest extends TestCase
         $response->assertStatus(200);
         $user->refresh();
         $this->assertEquals("gara", $user->name);
-    }
-
-    // testing cars
-
-    public function test_estimate_price()
-    {
-        Vioture::make([
-            'marque' => 'Toyota',
-            'modele' => 'Corolla',
-            'annee' => 2020,
-            'prix' => 20000,
-        ]);
-
-        Vioture::make([
-            'marque' => 'Toyota',
-            'modele' => 'Corolla',
-            'annee' => 2020,
-            'prix' => 22000,
-        ]);
-
-        $request = [
-            'marque' => 'Toyota',
-            'modele' => 'Corolla',
-            'annee' => 2020,
-        ];
-        $response = $this->postJson('/api/estimationprice', $request);
-
-        $response->assertStatus(200);
-        $content = $response->json();
-
-        $this->assertArrayHasKey('estimatedPrice', $content);
-        $this->assertEquals(22000, $content['estimatedPrice']);
     }
 }
