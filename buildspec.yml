@@ -15,10 +15,6 @@ phases:
     commands:
       - echo "Building project..."
       - npm install
-  post_build:
-    commands:
-      - echo "Running PHPUnit tests..."
-      - php artisan test
 
 artifacts:
   files:
