@@ -18,7 +18,7 @@ phases:
   post_build:
     commands:
       - echo "Running PHPUnit tests..."
-      - ./vendor/bin/phpunit --testsuite=Unit
+      - php artisan test
 
 artifacts:
   files:
