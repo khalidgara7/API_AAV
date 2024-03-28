@@ -13,22 +13,8 @@ class ExampleTest extends TestCase
     /**
      * A basic test example.
      */
-    public function test_Add_User(): void
+    public function test_that_true_is_true(): void
     {
-        // $user = [
-        //     "name" => "ana",
-        //     "email" => "ana@gmail.com",
-        //     "password" => "123",
-        // ];
-
-
-        // $response = $this->postJson("/api/adduser", User::factory()->create()->toArray());
-
-        // // dd(User::factory()->create()->toArray());
-
-        // $response->assertStatus(200);
-        // // $response->assertJson([
-        // //     "msg" => "user added successfully !"
-        // // ]);
+        $this->assertTrue(true);
     }
 }
