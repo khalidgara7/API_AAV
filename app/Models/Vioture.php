@@ -11,11 +11,11 @@ class Vioture extends Model
     protected $fillable = [
         'marque',
         'modele',
-        'kilometrage',
         'annee',
+        'kilometrage',
         'prix',
         'puissance',
-       'motorisation',
+        'motorisation',
         'carburant',
         'options',
     ];

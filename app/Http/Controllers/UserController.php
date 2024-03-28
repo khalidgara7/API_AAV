@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     public function store(Request $request)
     {
-        $user  = $request->all();
-        // dd($request);
-        $us = User::create($user);
-        return response()->json([
-            "msg" => "user added successfully !",
-            "data" => $us,
-        ], 201);
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return response()->json($user);
     }
 
     public function delete(User $user)

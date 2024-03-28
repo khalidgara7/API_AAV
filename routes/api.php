@@ -22,11 +22,12 @@ Route::post('/adduser', [UserController::class, 'store']);
 Route::delete('/deleteuser/{user}', [UserController::class, 'delete']);
 Route::put('/updateuser/{user}', [UserController::class, 'update']);
 
+Route::post('/admin', [UserController::class, 'Seeder']);
+Route::post('/estimationprice', [VoitureController::class, 'estimationprice']);
+
 Route::middleware('auth:api')->get('/profile', function () {
     Route::post('/auth/login', [AuthenticationController::class, 'authenticate']);
 });
-Route::post('/admin', [UserController::class, 'Seeder']);
+Route::post('/login', [AuthenticationController::class, 'authenticate']);
 
-Route::post('/estimationprice',[VoitureController::class, 'estimationprice']);
-
-// Route::post('/auth/login', [AuthenticationController::class, 'authenticate']);
+Route::get('/cars', [VoitureController::class, 'index']);

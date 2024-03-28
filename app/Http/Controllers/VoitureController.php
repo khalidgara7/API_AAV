@@ -7,8 +7,15 @@ use App\Models\Vioture;
 
 class VoitureController extends Controller
 {
+
+    public function index()
+    {
+        $voitures = Vioture::all();
+        return response()->json($voitures);
+    }
     public function estimationprice(Request $request)
     {
+
         $car = $request->validate([
             'marque' => 'required',
             'model' => 'required',
